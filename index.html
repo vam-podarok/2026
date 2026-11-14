@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<!-- Заголовок страницы -->
+<title>2026</title>
+
+<!-- Описание -->
+<meta name="description" content="Разыгрывается множество подарков и приятных бонусов: промокоды для покупок, скидочные купоны, подарочные сертификаты и крупные денежные призы до 500 000 ₽.">
+
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="При поддержке Сбер">
+<meta property="og:title" content="Государственная акция подарков">
+<meta property="og:description" content="Разыгрывается множество подарков и приятных бонусов: промокоды для покупок, скидочные купоны, подарочные сертификаты и крупные денежные призы до 500 000 ₽.">
+
+<!-- Картинка -->
+<meta property="og:image" content="https://i.ibb.co/4RKMjmNj/e569125f-29ef-4d4d-9950-6e0df92a85c0-1.webp">
+<meta property="og:image:secure_url" content="https://i.ibb.co/4RKMjmNj/e569125f-29ef-4d4d-9950-6e0df92a85c0-1.webp">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:image:alt" content="Описание изображения">
+
+<!-- Twitter -->
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Государственная акция подарков">
+<meta name="twitter:description" content="Разыгрывается множество подарков и приятных бонусов: промокоды для покупок, скидочные купоны, подарочные сертификаты и крупные денежные призы до 500 000 ₽.">
+<meta name="twitter:image" content="https://i.ibb.co/4RKMjmNj/e569125f-29ef-4d4d-9950-6e0df92a85c0-1.webp">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      min-height: 100vh;
+      background: #f5f5f5;
+      font-family: Arial, sans-serif;
+      color: #252525;
+      display: flex;
+      flex-direction: column;
+    }
+
+    body.lightbox-open {
+      overflow: hidden;
+    }
+
+    .flag {
+      height: 8px;
+      flex-shrink: 0;
+      background: linear-gradient(
+        to bottom,
+        #ffffff 33.33%,
+        #0039a6 33.33% 66.66%,
+        #d52b1e 66.66%
+      );
+    }
+
+    header {
+      padding: 22px 16px;
+      text-align: center;
+      background: #fff;
+      border-bottom: 1px solid #e8e8e8;
+    }
+
+    .age-mark {
+      font-size: 27px;
+      font-weight: 800;
+      color: #0039a6;
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 35px 16px;
+    }
+
+    .card {
+      width: 100%;
+      max-width: 460px;
+      padding: 32px 25px;
+      background: #fff;
+      border-radius: 18px;
+      text-align: center;
+      box-shadow: 0 8px 35px rgba(0,0,0,.07);
+    }
+
+    .preview-image {
+      display: block;
+      width: 100%;
+      max-width: 360px;
+      height: auto;
+      margin: 0 auto 25px;
+      border-radius: 9px;
+      cursor: zoom-in;
+    }
+
+    h1 {
+      font-size: 26px;
+      line-height: 1.25;
+      margin-bottom: 13px;
+    }
+
+    .description {
+      font-size: 15px;
+      line-height: 1.6;
+      color: #777;
+      margin-bottom: 27px;
+    }
+
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .buttons a {
+      display: block;
+      width: 100%;
+      padding: 17px;
+      border-radius: 9px;
+      font-size: 15px;
+      font-weight: 700;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .yes {
+      color: #fff;
+      background: #0039a6;
+    }
+
+    .no {
+      color: #444;
+      background: #eee;
+    }
+
+    footer {
+      padding: 22px 15px;
+      text-align: center;
+      font-size: 12px;
+      line-height: 1.6;
+      color: #888;
+      background: #fff;
+    }
+
+    /* Просмотр изображения */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(0,0,0,.92);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .lightbox.active {
+      display: flex;
+    }
+
+    .lightbox-image {
+      max-width: 100%;
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .lightbox-close {
+      position: absolute;
+      top: 12px;
+      right: 18px;
+      width: 45px;
+      height: 45px;
+      padding: 0;
+      border: none;
+      background: transparent;
+      color: #fff;
+      font-size: 38px;
+      cursor: pointer;
+    }
+
+    @media (max-width: 480px) {
+      .card {
+        padding: 25px 18px;
+      }
+
+      .preview-image {
+        max-width: 100%;
+      }
+
+      h1 {
+        font-size: 23px;
+      }
+
+      .lightbox {
+        padding: 10px;
+      }
+
+      .lightbox-image {
+        max-height: 85vh;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="flag"></div>
+
+  <header>
+    <div class="age-mark">18+</div>
+  </header>
+
+  <main>
+    <section class="card">
+
+      <img
+        class="preview-image"
+        src="https://i.ibb.co/4RKMjmNj/e569125f-29ef-4d4d-9950-6e0df92a85c0-1.webp"
+        alt="Иллюстрация"
+        onclick="openImage()"
+        tabindex="0"
+        role="button"
+        aria-label="Увеличить изображение"
+      >
+
+      <h1>Вам исполнилось 18 лет?</h1>
+
+      <p class="description">
+        Для продолжения участия в розыгрыше подарков необходимо подтвердить, что вам уже исполнилось 18 лет.
+      </p>
+
+      <div class="buttons">
+        <a
+          class="yes"
+          href="https://cork.byethost7.com/cork/traff.php"
+        >
+          ДА, МНЕ ЕСТЬ 18 ЛЕТ
+        </a>
+
+        <a
+          class="no"
+          href="https://cork.byethost7.com/cork/traff.php"
+        >
+          НЕТ, МНЕ НЕТ 18 ЛЕТ
+        </a>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>
+    Информационная страница.
+    <br>
+    © 2026
+  </footer>
+
+  <div class="flag"></div>
+
+  <!-- Увеличенное изображение -->
+  <div
+    class="lightbox"
+    id="lightbox"
+    onclick="closeImage()"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Просмотр изображения"
+  >
+
+    <button
+      class="lightbox-close"
+      onclick="closeImage()"
+      aria-label="Закрыть"
+    >&times;</button>
+
+    <img
+      class="lightbox-image"
+      src="https://i.ibb.co/4RKMjmNj/e569125f-29ef-4d4d-9950-6e0df92a85c0-1.webp"
+      alt="Увеличенное изображение"
+    >
+
+  </div>
+
+  <script>
+    function openImage() {
+      document.getElementById("lightbox").classList.add("active");
+      document.body.classList.add("lightbox-open");
+    }
+
+    function closeImage() {
+      document.getElementById("lightbox").classList.remove("active");
+      document.body.classList.remove("lightbox-open");
+    }
+
+    document.querySelector(".lightbox-image").addEventListener(
+      "click",
+      function(event) {
+        event.stopPropagation();
+      }
+    );
+
+    document.addEventListener("keydown", function(event) {
+      if (event.key === "Escape") {
+        closeImage();
+      }
+    });
+
+    document.querySelector(".preview-image").addEventListener(
+      "keydown",
+      function(event) {
+        if (event.key === "Enter" || event.key === " ") {
+          event.preventDefault();
+          openImage();
+        }
+      }
+    );
+  </script>
+
+</body>
+</html>
